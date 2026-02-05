@@ -8,13 +8,20 @@
 
 import datetime
 
+still_writing = True
 print('Write a journal entry:' + "\n")
 new_journal_title = input("What do you want to title this journal?")
-new_journal_content = input()
+new_journal_content = ""
+while still_writing:
+    next_line = input()
+    if next_line == "done":
+        still_writing = False
+    else:
+        new_journal_content += "\n" + next_line
 
 f = open('journal.txt', "a")
 f.write(
     new_journal_title + " - " + str(datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")) + "\n" +
-    new_journal_content + "\n\n"
+    new_journal_content + "\n\n=======================\n\n"
 )
 f.close()
